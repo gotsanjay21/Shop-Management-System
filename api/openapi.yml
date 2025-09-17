@@ -1,0 +1,243 @@
+openapi: 3.0.3
+info:
+  title: SQL Products API
+  description: REST API for user authentication, product catalog, and order management using Express + MySQL + Sequelize.
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000/api
+    description: Local development server
+
+paths:
+  /auth/login:
+    post:
+      summary: User login
+      tags: [Auth]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "200":
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        "401":
+          description: Invalid credentials
+
+  /users:
+    get:
+      summary: List all users
+      tags: [Users]
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: List of users
+    post:
+      summary: Create a new user
+      tags: [Users]
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserInput"
+      responses:
+        "201":
+          description: User created
+
+  /users/{id}:
+    get:
+      summary: Get user by ID
+      tags: [Users]
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: User found
+        "404":
+          description: User not found
+
+  /products:
+    get:
+      summary: Get products (with filters & pagination)
+      tags: [Products]
+      parameters:
+        - in: query
+          name: q
+          schema:
+            type: string
+          description: Search keyword
+        - in: query
+          name: category
+          schema:
+            type: string
+        - in: query
+          name: minPrice
+          schema:
+            type: number
+        - in: query
+          name: maxPrice
+          schema:
+            type: number
+        - in: query
+          name: sort
+          schema:
+            type: string
+            enum: [price, createdAt]
+        - in: query
+          name: page
+          schema:
+            type: integer
+        - in: query
+          name: pageSize
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Product list
+
+    post:
+      summary: Create new product
+      tags: [Products]
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProductInput"
+      responses:
+        "201":
+          description: Product created
+
+  /products/{id}:
+    get:
+      summary: Get product by ID
+      tags: [Products]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Product found
+        "404":
+          description: Product not found
+
+  /products/analytics/top:
+    get:
+      summary: Get top-selling products in a date range
+      tags: [Analytics]
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: from
+          schema:
+            type: integer
+          description: From year (default: 2019)
+        - in: query
+          name: to
+          schema:
+            type: integer
+          description: To year (default: current year)
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: Max products to return
+      responses:
+        "200":
+          description: Top-selling products list
+
+  /orders:
+    get:
+      summary: Get logged-in user's orders
+      tags: [Orders]
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: User orders
+    post:
+      summary: Create a new order
+      tags: [Orders]
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      productId:
+                        type: integer
+                      qty:
+                        type: integer
+      responses:
+        "201":
+          description: Order created
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    UserInput:
+      type: object
+      required: [email, password, name]
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+        name:
+          type: string
+        roles:
+          type: string
+
+    ProductInput:
+      type: object
+      required: [name, price, stock]
+      properties:
+        name:
+          type: string
+        category:
+          type: string
+        price:
+          type: number
+        stock:
+          type: integer

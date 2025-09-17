@@ -1,0 +1,236 @@
+[
+  {
+    "TABLE_NAME": "order_items",
+    "COLUMN_NAME": "id",
+    "COLUMN_TYPE": "bigint",
+    "IS_NULLABLE": "NO",
+    "COLUMN_DEFAULT": null,
+    "COLUMN_KEY": "PRI",
+    "EXTRA": "auto_increment"
+  },
+  {
+    "TABLE_NAME": "order_items",
+    "COLUMN_NAME": "qty",
+    "COLUMN_TYPE": "int",
+    "IS_NULLABLE": "NO",
+    "COLUMN_DEFAULT": null,
+    "COLUMN_KEY": "",
+    "EXTRA": ""
+  },
+  {
+    "TABLE_NAME": "order_items",
+    "COLUMN_NAME": "price",
+    "COLUMN_TYPE": "decimal(10,2)",
+    "IS_NULLABLE": "NO",
+    "COLUMN_DEFAULT": null,
+    "COLUMN_KEY": "",
+    "EXTRA": ""
+  },
+  {
+    "TABLE_NAME": "order_items",
+    "COLUMN_NAME": "orderId",
+    "COLUMN_TYPE": "bigint",
+    "IS_NULLABLE": "YES",
+    "COLUMN_DEFAULT": null,
+    "COLUMN_KEY": "MUL",
+    "EXTRA": ""
+  },
+  {
+    "TABLE_NAME": "order_items",
+    "COLUMN_NAME": "productId",
+    "COLUMN_TYPE": "bigint",
+    "IS_NULLABLE": "YES",
+    "COLUMN_DEFAULT": null,
+    "COLUMN_KEY": "MUL",
+    "EXTRA": ""
+  },
+  {
+    "TABLE_NAME": "orders",
+    "COLUMN_NAME": "id",
+    "COLUMN_TYPE": "bigint",
+    "IS_NULLABLE": "NO",
+    "COLUMN_DEFAULT": null,
+    "COLUMN_KEY": "PRI",
+    "EXTRA": "auto_increment"
+  },
+  {
+    "TABLE_NAME": "orders",
+    "COLUMN_NAME": "status",
+    "COLUMN_TYPE": "enum('pending','paid','shipped','cancelled')",
+    "IS_NULLABLE": "YES",
+    "COLUMN_DEFAULT": "pending",
+    "COLUMN_KEY": "",
+    "EXTRA": ""
+  },
+  {
+    "TABLE_NAME": "orders",
+    "COLUMN_NAME": "total",
+    "COLUMN_TYPE": "decimal(12,2)",
+    "IS_NULLABLE": "NO",
+    "COLUMN_DEFAULT": null,
+    "COLUMN_KEY": "",
+    "EXTRA": ""
+  },
+  {
+    "TABLE_NAME": "orders",
+    "COLUMN_NAME": "createdAt",
+    "COLUMN_TYPE": "datetime",
+    "IS_NULLABLE": "NO",
+    "COLUMN_DEFAULT": null,
+    "COLUMN_KEY": "",
+    "EXTRA": ""
+  },
+  {
+    "TABLE_NAME": "orders",
+    "COLUMN_NAME": "updatedAt",
+    "COLUMN_TYPE": "datetime",
+    "IS_NULLABLE": "NO",
+    "COLUMN_DEFAULT": null,
+    "COLUMN_KEY": "",
+    "EXTRA": ""
+  },
+  {
+    "TABLE_NAME": "orders",
+    "COLUMN_NAME": "userId",
+    "COLUMN_TYPE": "bigint",
+    "IS_NULLABLE": "YES",
+    "COLUMN_DEFAULT": null,
+    "COLUMN_KEY": "MUL",
+    "EXTRA": ""
+  },
+  {
+    "TABLE_NAME": "products",
+    "COLUMN_NAME": "id",
+    "COLUMN_TYPE": "bigint",
+    "IS_NULLABLE": "NO",
+    "COLUMN_DEFAULT": null,
+    "COLUMN_KEY": "PRI",
+    "EXTRA": "auto_increment"
+  },
+  {
+    "TABLE_NAME": "products",
+    "COLUMN_NAME": "name",
+    "COLUMN_TYPE": "varchar(255)",
+    "IS_NULLABLE": "NO",
+    "COLUMN_DEFAULT": null,
+    "COLUMN_KEY": "",
+    "EXTRA": ""
+  },
+  {
+    "TABLE_NAME": "products",
+    "COLUMN_NAME": "sku",
+    "COLUMN_TYPE": "varchar(255)",
+    "IS_NULLABLE": "YES",
+    "COLUMN_DEFAULT": null,
+    "COLUMN_KEY": "UNI",
+    "EXTRA": ""
+  },
+  {
+    "TABLE_NAME": "products",
+    "COLUMN_NAME": "price",
+    "COLUMN_TYPE": "decimal(10,2)",
+    "IS_NULLABLE": "NO",
+    "COLUMN_DEFAULT": null,
+    "COLUMN_KEY": "",
+    "EXTRA": ""
+  },
+  {
+    "TABLE_NAME": "products",
+    "COLUMN_NAME": "category",
+    "COLUMN_TYPE": "varchar(255)",
+    "IS_NULLABLE": "YES",
+    "COLUMN_DEFAULT": null,
+    "COLUMN_KEY": "",
+    "EXTRA": ""
+  },
+  {
+    "TABLE_NAME": "products",
+    "COLUMN_NAME": "stock",
+    "COLUMN_TYPE": "int",
+    "IS_NULLABLE": "YES",
+    "COLUMN_DEFAULT": "0",
+    "COLUMN_KEY": "",
+    "EXTRA": ""
+  },
+  {
+    "TABLE_NAME": "products",
+    "COLUMN_NAME": "createdAt",
+    "COLUMN_TYPE": "datetime",
+    "IS_NULLABLE": "NO",
+    "COLUMN_DEFAULT": null,
+    "COLUMN_KEY": "",
+    "EXTRA": ""
+  },
+  {
+    "TABLE_NAME": "products",
+    "COLUMN_NAME": "updatedAt",
+    "COLUMN_TYPE": "datetime",
+    "IS_NULLABLE": "NO",
+    "COLUMN_DEFAULT": null,
+    "COLUMN_KEY": "",
+    "EXTRA": ""
+  },
+  {
+    "TABLE_NAME": "users",
+    "COLUMN_NAME": "id",
+    "COLUMN_TYPE": "bigint",
+    "IS_NULLABLE": "NO",
+    "COLUMN_DEFAULT": null,
+    "COLUMN_KEY": "PRI",
+    "EXTRA": "auto_increment"
+  },
+  {
+    "TABLE_NAME": "users",
+    "COLUMN_NAME": "email",
+    "COLUMN_TYPE": "varchar(255)",
+    "IS_NULLABLE": "NO",
+    "COLUMN_DEFAULT": null,
+    "COLUMN_KEY": "UNI",
+    "EXTRA": ""
+  },
+  {
+    "TABLE_NAME": "users",
+    "COLUMN_NAME": "passwordHash",
+    "COLUMN_TYPE": "varchar(255)",
+    "IS_NULLABLE": "NO",
+    "COLUMN_DEFAULT": null,
+    "COLUMN_KEY": "",
+    "EXTRA": ""
+  },
+  {
+    "TABLE_NAME": "users",
+    "COLUMN_NAME": "name",
+    "COLUMN_TYPE": "varchar(255)",
+    "IS_NULLABLE": "YES",
+    "COLUMN_DEFAULT": null,
+    "COLUMN_KEY": "",
+    "EXTRA": ""
+  },
+  {
+    "TABLE_NAME": "users",
+    "COLUMN_NAME": "roles",
+    "COLUMN_TYPE": "json",
+    "IS_NULLABLE": "YES",
+    "COLUMN_DEFAULT": null,
+    "COLUMN_KEY": "",
+    "EXTRA": ""
+  },
+  {
+    "TABLE_NAME": "users",
+    "COLUMN_NAME": "createdAt",
+    "COLUMN_TYPE": "datetime",
+    "IS_NULLABLE": "NO",
+    "COLUMN_DEFAULT": null,
+    "COLUMN_KEY": "",
+    "EXTRA": ""
+  },
+  {
+    "TABLE_NAME": "users",
+    "COLUMN_NAME": "updatedAt",
+    "COLUMN_TYPE": "datetime",
+    "IS_NULLABLE": "NO",
+    "COLUMN_DEFAULT": null,
+    "COLUMN_KEY": "",
+    "EXTRA": ""
+  }
+]
